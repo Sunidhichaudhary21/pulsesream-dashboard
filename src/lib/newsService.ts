@@ -59,6 +59,7 @@ export async function fetchLiveNews(options: FetchNewsOptions = {}): Promise<{
         headers: {
           'User-Agent': 'PulseStream-Dashboard/1.0',
         },
+        signal: AbortSignal.timeout(3000),
         next: { revalidate: 300 }, // Cache server-side for 5 minutes
       });
 
@@ -97,6 +98,7 @@ export async function fetchLiveNews(options: FetchNewsOptions = {}): Promise<{
       }
 
       const res = await fetch(publicUrl.toString(), {
+        signal: AbortSignal.timeout(3000),
         next: { revalidate: 300 },
       });
 

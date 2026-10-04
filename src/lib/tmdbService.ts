@@ -44,6 +44,7 @@ export async function fetchTmdbMovies(options: FetchMovieOptions = {}): Promise<
       }
 
       const res = await fetch(url.toString(), {
+        signal: AbortSignal.timeout(3000),
         next: { revalidate: 600 }, // Cache server-side for 10 minutes
       });
 
